@@ -3,7 +3,6 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-
 reload("user.plugins")
 
 reload("user.colorscheme")
@@ -28,8 +27,4 @@ reload("user.general")
 
 reload("user.builtins")
 
--- reload("user.mappings")
-
--- reload("user.servers")
-
--- reload("user.debuggers")
+reload("user.dap")
