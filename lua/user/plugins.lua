@@ -13,8 +13,8 @@ lvim.plugins = {
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
-				suggestions = { enabled = false },
-				panel = { enabled = false },
+				-- suggestions = { enabled = false },
+				-- panel = { enabled = false },
 			})
 		end,
 	},
@@ -86,7 +86,24 @@ lvim.plugins = {
 
 	{
 		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
+		-- cmd = "TroubleToggle",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		cmd = {
+			"Trouble",
+			"TroubleClose",
+			"TroubleRefresh",
+			"TroubleToggle",
+		},
+		-- keys = {
+		-- 	{ "<leader>xx", "<Cmd>Trouble<CR>", desc = "open or jump to Trouble" },
+		-- 	{ "<leader>xc", "<Cmd>TroubleClose<CR>", desc = "close Trouble" },
+		-- 	{ "<leader>xw", "<Cmd>Trouble workspace_diagnostics<CR>", desc = "workspace diagnostics" },
+		-- 	{ "<leader>xd", "<Cmd>Trouble document_diagnostics<CR>", desc = "document diagnostics" },
+		-- 	{ "<leader>xl", "<Cmd>Trouble loclist<CR>", desc = "location list" },
+		-- 	{ "<leader>xq", "<Cmd>Trouble quickfix<CR>", desc = "quickfix" },
+		-- 	{ "<leader>xr", "<Cmd>Trouble lsp_references<CR>", desc = "LSP references" },
+		-- },
+		opts = {},
 	},
 
 	{
@@ -171,14 +188,62 @@ lvim.plugins = {
 		end,
 	},
 	{
+		"nvim-telescope/telescope.nvim",
+		keys = function()
+			local prefix = "<leader>fd"
+			return {
+				{
+					prefix .. "c",
+					function()
+						require("telescope").extensions.dap.commands()
+					end,
+					desc = "Telescope DAP commands",
+				},
+				{
+					prefix .. "f",
+					function()
+						require("telescope").extensions.dap.frames()
+					end,
+					desc = "Telescope DAP frames",
+				},
+				{
+					prefix .. "g",
+					function()
+						require("telescope").extensions.dap.configurations()
+					end,
+					desc = "Telescope DAP configurations",
+				},
+				{
+					prefix .. "l",
+					function()
+						require("telescope").extensions.dap.list_breakpoints()
+					end,
+					desc = "Telescope DAP list breakpoints",
+				},
+				{
+					prefix .. "v",
+					function()
+						require("telescope").extensions.dap.variables()
+					end,
+					desc = "Telescope DAP variables",
+				},
+			}
+		end,
+		dependencies = { "nvim-telescope/telescope-dap.nvim" },
+		opts = function()
+			require("telescope").load_extension("dap")
+		end,
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" },
+	},
+	{
 		"nvim-telescope/telescope-project.nvim",
 		event = "BufWinEnter",
 		config = function()
 			require("telescope").load_extension("project")
 		end,
-		-- init = function()
-		-- 	vim.cmd([[packadd telescope.nvim]])
-		-- end,
 	},
 	{
 		-- view treesitter information
@@ -195,41 +260,127 @@ lvim.plugins = {
 	-- 		vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
 	-- 	end,
 	-- },
+
+	-- {
+	-- 	"phaazon/hop.nvim",
+	-- 	branch = "v2",
+	-- 	config = function()
+	-- 		require("hop").setup({
+	-- 			-- keys = function()
+	-- 			-- 	vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+	-- 			-- 	vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+	-- 			--end,
+	-- 		})
+	-- 		vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+	-- 		vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+
+	-- 		local hop = require("hop")
+	-- 		local directions = require("hop.hint").HintDirection
+	-- 		vim.keymap.set("", "f", function()
+	-- 			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+	-- 		end, { remap = true })
+	-- 		vim.keymap.set("", "F", function()
+	-- 			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+	-- 		end, { remap = true })
+	-- 		vim.keymap.set("", "t", function()
+	-- 			hop.hint_char1({
+	-- 				direction = directions.AFTER_CURSOR,
+	-- 				current_line_only = true,
+	-- 				hint_offset = -1,
+	-- 			})
+	-- 		end, { remap = true })
+	-- 		vim.keymap.set("", "T", function()
+	-- 			hop.hint_char1({
+	-- 				direction = directions.BEFORE_CURSOR,
+	-- 				current_line_only = true,
+	-- 				hint_offset = 1,
+	-- 			})
+	-- 		end, { remap = true })
+	-- 	end,
+	-- },
+
 	{
 		"phaazon/hop.nvim",
 		branch = "v2",
-		config = function()
-			require("hop").setup({
-				-- keys = function()
-				-- 	vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-				-- 	vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-				--end,
-			})
-			vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-			vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-
+		opts = {},
+		keys = function()
 			local hop = require("hop")
 			local directions = require("hop.hint").HintDirection
-			vim.keymap.set("", "f", function()
-				hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-			end, { remap = true })
-			vim.keymap.set("", "F", function()
-				hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-			end, { remap = true })
-			vim.keymap.set("", "t", function()
-				hop.hint_char1({
-					direction = directions.AFTER_CURSOR,
-					current_line_only = true,
-					hint_offset = -1,
-				})
-			end, { remap = true })
-			vim.keymap.set("", "T", function()
-				hop.hint_char1({
-					direction = directions.BEFORE_CURSOR,
-					current_line_only = true,
-					hint_offset = 1,
-				})
-			end, { remap = true })
+			return {
+				{
+					"s",
+					function()
+						require("hop").hint_words()
+					end,
+					mode = { "n" },
+					desc = "Hop hint words",
+				},
+				{
+					"<S-s>",
+					function()
+						require("hop").hint_lines()
+					end,
+					mode = { "n" },
+					desc = "Hop hint lines",
+				},
+				{
+					"s",
+					function()
+						require("hop").hint_words({ extend_visual = true })
+					end,
+					mode = { "v" },
+					desc = "Hop hint words",
+				},
+				{
+					"<S-s>",
+					function()
+						require("hop").hint_lines({ extend_visual = true })
+					end,
+					mode = { "v" },
+					desc = "Hop hint lines",
+				},
+
+				{
+					"f",
+					function()
+						hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+					end,
+					mode = { "n" },
+					desc = "Hop hint 1 char forward to",
+				},
+				{
+					"<S-f>",
+					function()
+						hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+					end,
+					mode = { "n" },
+					desc = "Hop hint 1 char backward to",
+				},
+				{
+					"t",
+					function()
+						hop.hint_char1({
+							direction = directions.AFTER_CURSOR,
+							current_line_only = true,
+							hint_offset = -1,
+						})
+					end,
+					mode = { "n" },
+					desc = "Hop hint 1 char forward before",
+				},
+				{
+					"<S-t>",
+					function()
+						hop.hint_char1({
+							direction = directions.BEFORE_CURSOR,
+							current_line_only = true,
+							hint_offset = 1,
+						})
+					end,
+					mode = { "n" },
+					desc = "Hop hint 1 char backward before",
+				},
+			}
 		end,
 	},
 	{
@@ -316,6 +467,40 @@ lvim.plugins = {
 		"sindrets/diffview.nvim",
 		event = "BufRead",
 	},
+	-- {
+	-- 	"SmiteshP/nvim-navbuddy",
+	-- 	dependencies = {
+	-- 		"neovim/nvim-lspconfig",
+	-- 		"SmiteshP/nvim-navic",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"numToStr/Comment.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- 	event = "User NavicInit",
+	-- 	command = "Navbuddy",
+	-- 	keys = {
+	-- 		{
+	-- 			"<enter>",
+	-- 			function()
+	-- 				require("nvim-navbuddy").open()
+	-- 			end,
+	-- 			desc = "Open navbuddy",
+	-- 			mode = "n",
+	-- 		},
+	-- 	},
+	-- 	init = function()
+	-- 		require("helpers").on_lsp_attach(function(client, buffer)
+	-- 			if client.server_capabilities.documentSymbolProvider then
+	-- 				require("nvim-navbuddy").attach(client, buffer)
+	-- 			end
+	-- 		end)
+	-- 	end,
+	-- 	opts = {
+	-- 		lsp = {
+	-- 			auto_attach = true,
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"stevearc/dressing.nvim",
 		opts = {
@@ -327,6 +512,39 @@ lvim.plugins = {
 	{ "tpope/vim-repeat" },
 	{ "tpope/vim-surround" },
 
+	{
+		"Weissle/persistent-breakpoints.nvim",
+		event = "BufReadPost",
+		config = function()
+			require("persistent-breakpoints").setup({
+				load_breakpoints_event = { "BufReadPost" },
+			})
+		end,
+		keys = {
+			{
+				"<leader>dP",
+				desc = "Persistent Breakpoints",
+			},
+			{
+				"<leader>dPt",
+				"<cmd>PBToggleBreakpoint<cr>",
+				-- { silent = true },
+				desc = "Toggle Breakpoint",
+			},
+			{
+				"<leader>dPc",
+				"<cmd>PBClearAllBreakpoints<cr>",
+				-- { silent = true },
+				desc = "Clear Breakpoints",
+			},
+			{
+				"<leader>dPC",
+				"<cmd>PBSetConditionalBreakpoint<cr>",
+				-- { silent = true },
+				desc = "Conditional Breakpoint",
+			},
+		},
+	},
 	{
 		"windwp/nvim-spectre",
 		event = "BufRead",
@@ -341,11 +559,6 @@ lvim.plugins = {
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
-	},
-
-	{
-		"nvim-telescope/telescope-frecency.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" },
 	},
 
 	-- {
@@ -373,6 +586,19 @@ lvim.plugins = {
 			})
 		end,
 	},
+
+	-- { "tpope/vim-fugitive" },
+	-- { "knsh14/vim-github-link" },
+	-- {
+	-- 	"lewis6991/gitsigns.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("configs.plugins.gitsigns").setup()
+	-- 	end,
+	-- },
 }
 
 table.insert(lvim.plugins, {
