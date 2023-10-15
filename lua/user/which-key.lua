@@ -58,7 +58,7 @@ wk.mappings["G"] = {
 	t = { ":lua require('copilot.suggestion').toggle_auto_trigger()<cr>", "Toggle Auto Trigger" },
 }
 
-wk.mappings["x"] = { ":xa<cr>", "Save All and Quit" }
+wk.mappings["X"] = { ":xa<cr>", "Save All and Quit" }
 
 wk.mappings["r"] = {
 	name = "Telescope",
@@ -69,13 +69,14 @@ wk.mappings["r"] = {
 -- keybindings for folke/trouble
 wk.mappings["t"] = {
 	name = "Diagnostics",
-	t = { "<cmd>TroubleToggle<cr>", "trouble" },
+	t = { "<cmd>TroubleToggle<cr>", "Open or Jump to Trouble" },
 	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-	q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-	l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-	r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+	q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+	l = { "<cmd>TroubleToggle loclist<cr>", "Location List" },
+	r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
+	x = { "<cmd>TroubleClose<cr>", "Close Trouble" },
 }
 
 -- keybindinds for simrats39/symbols-outline.nvim
