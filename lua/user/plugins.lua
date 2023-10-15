@@ -19,18 +19,18 @@ lvim.plugins = {
 		end,
 	},
 
-	{
-		"jose-elias-alvarez/typescript.nvim",
-		keys = {
-			{ "<leader>C", desc = "TypeScript" },
-			{ "<leader>Ca", "<cmd>TypescriptAddMissingImports<cr>", desc = "Add missing imports" },
-			{ "<leader>Co", "<cmd>TypescriptOrganizeImports<cr>", desc = "Organize imports" },
-			{ "<leader>Cu", "<cmd>TypescriptRemoveUnused<cr>", desc = "Remove unused imports" },
-			{ "<leader>Cf", "<cmd>TypescriptFixAll<cr>", desc = "Fix all" },
-			{ "<leader>Cr", "<cmd>TypescriptRenameFile<cr>", desc = "Rename file" },
-			{ "<leader>Cg", "<cmd>TypescriptGoToSourceDefinition<cr>", desc = "Go to source definition" },
-		},
-	},
+	-- {
+	-- 	"jose-elias-alvarez/typescript.nvim",
+	-- 	keys = {
+	-- 		{ "<leader>C", desc = "TypeScript" },
+	-- 		{ "<leader>Ca", "<cmd>TypescriptAddMissingImports<cr>", desc = "Add missing imports" },
+	-- 		{ "<leader>Co", "<cmd>TypescriptOrganizeImports<cr>", desc = "Organize imports" },
+	-- 		{ "<leader>Cu", "<cmd>TypescriptRemoveUnused<cr>", desc = "Remove unused imports" },
+	-- 		{ "<leader>Cf", "<cmd>TypescriptFixAll<cr>", desc = "Fix all" },
+	-- 		{ "<leader>Cr", "<cmd>TypescriptRenameFile<cr>", desc = "Rename file" },
+	-- 		{ "<leader>Cg", "<cmd>TypescriptGoToSourceDefinition<cr>", desc = "Go to source definition" },
+	-- 	},
+	-- },
 
 	{ "ayu-theme/ayu-vim" },
 	{ "lunarvim/horizon.nvim" },
@@ -231,6 +231,32 @@ lvim.plugins = {
 				})
 			end, { remap = true })
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			local api = require("typescript-tools.api")
+			require("typescript-tools").setup({
+				handlers = {
+					["textDocument/publishDiagnostics"] = api.filter_diagnostics(
+						-- Ignore 'This may be converted to an async function' diagnostics.
+						{ 6133, 80001 }
+					),
+				},
+			})
+		end,
+		keys = {
+			{ "<leader>C", desc = "TS Tools" },
+			{ "<leader>Ca", "<cmd>TSToolsAddMissingImports<cr>", desc = "Add Missing Imports" },
+			{ "<leader>Co", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize Imports" },
+			{ "<leader>Cs", "<cmd>TSToolsSortImports<cr>", desc = "Sort Imports" },
+			{ "<leader>Ci", "<cmd>TSToolsRemoveUnusedImports<cr>", desc = "Remove Unused Imports" },
+			{ "<leader>Cu", "<cmd>TSToolsRemoveUnused<cr>", desc = "Remove Unused Statements" },
+			{ "<leader>Cf", "<cmd>TSToolsFixAll<cr>", desc = "Fix All" },
+			{ "<leader>Cr", "<cmd>TSToolsRenameFile<cr>", desc = "Rename File" },
+			{ "<leader>Cg", "<cmd>TSToolsGoToSourceDefinition<cr>", desc = "Go To Source Definition" },
+		},
 	},
 
 	{ "rafamadriz/friendly-snippets" },
