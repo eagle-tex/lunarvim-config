@@ -13,19 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +33 ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
-badd +10 index.html
+badd +15 ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
+badd +12 index.html
 badd +64 src/scenes/ourClasses/index.tsx
 badd +29 src/scenes/home/index.tsx
-badd +3 src/files/debugMe.js
-badd +39 src/scenes/navbar/index.tsx
+badd +20 src/files/debugMe.js
+badd +38 src/scenes/navbar/index.tsx
 badd +5 src/files/functions.ts
-badd +12 src/files/ts-file.ts
+badd +13 src/files/ts-file.ts
+badd +9 src/assets/Asset.tsx
+badd +7 src/files/fibonacci.ts
 argglobal
 %argdel
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit src/scenes/navbar/index.tsx
+edit ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -45,12 +47,13 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
 argglobal
-let s:l = 38 - ((25 * winheight(0) + 26) / 52)
+balt index.html
+let s:l = 6 - ((5 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 38
-normal! 0
+keepjumps 6
+normal! 016|
 wincmd w
 argglobal
 if bufexists(fnamemodify("src/files/debugMe.js", ":p")) | buffer src/files/debugMe.js | else | edit src/files/debugMe.js | endif
@@ -68,7 +71,7 @@ wincmd w
 exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
 tabnext
-edit ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
+edit src/files/debugMe.js
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -88,26 +91,26 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 argglobal
-balt src/files/ts-file.ts
-let s:l = 33 - ((32 * winheight(0) + 26) / 52)
+balt ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
+let s:l = 20 - ((19 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 33
-normal! 0
+keepjumps 20
+normal! 036|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/scenes/navbar/index.tsx", ":p")) | buffer src/scenes/navbar/index.tsx | else | edit src/scenes/navbar/index.tsx | endif
+if bufexists(fnamemodify("~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts", ":p")) | buffer ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts | else | edit ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/scenes/navbar/index.tsx
+  silent file ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
 endif
-balt src/files/ts-file.ts
-let s:l = 39 - ((11 * winheight(0) + 26) / 52)
+balt src/files/debugMe.js
+let s:l = 5 - ((4 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 39
-normal! 0
+keepjumps 5
+normal! 017|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)

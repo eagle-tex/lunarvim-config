@@ -13,17 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +28 ~/.config/lvim/config.lua
-badd +247 user/plugins.lua
-badd +25 user/keymaps.lua
-badd +71 user/lsp.lua
+badd +26 ~/.config/lvim/config.lua
+badd +203 user/plugins.lua
+badd +40 user/colorscheme.lua
+badd +12 user/autocmds.lua
+badd +20 user/dashboard.lua
+badd +29 user/filetype.lua
+badd +20 user/keymaps.lua
+badd +128 user/kind.lua
+badd +172 user/lsp.lua
 badd +41 user/builtins.lua
 badd +2 user/statusline.lua
-badd +44 user/which-key.lua
-badd +20 user/dap.lua
+badd +68 user/which-key.lua
 argglobal
 %argdel
-edit user/dap.lua
+edit user/plugins.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -40,15 +44,16 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
+exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
 argglobal
-balt ~/.config/lvim/config.lua
-let s:l = 20 - ((19 * winheight(0) + 26) / 52)
+balt user/autocmds.lua
+let s:l = 33 - ((32 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 20
-normal! 043|
+keepjumps 33
+normal! 04|
 wincmd w
 argglobal
 if bufexists(fnamemodify("user/lsp.lua", ":p")) | buffer user/lsp.lua | else | edit user/lsp.lua | endif
@@ -56,14 +61,16 @@ if &buftype ==# 'terminal'
   silent file user/lsp.lua
 endif
 balt user/plugins.lua
-let s:l = 72 - ((41 * winheight(0) + 26) / 52)
+let s:l = 133 - ((43 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 72
+keepjumps 133
 normal! 02|
 wincmd w
-wincmd =
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
+exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -79,7 +86,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
