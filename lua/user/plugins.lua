@@ -19,27 +19,22 @@ lvim.plugins = {
 		end,
 	},
 
+	{
+		"jose-elias-alvarez/typescript.nvim",
+		keys = {
+			{ "<leader>C", desc = "TypeScript" },
+			{ "<leader>Ca", "<cmd>TypescriptAddMissingImports<cr>", desc = "Add Missing Imports" },
+			{ "<leader>Co", "<cmd>TypescriptOrganizeImports<cr>", desc = "Organize Imports" },
+			{ "<leader>Cu", "<cmd>TypescriptRemoveUnused<cr>", desc = "Remove Unused Imports" },
+			{ "<leader>Cf", "<cmd>TypescriptFixAll<cr>", desc = "Fix All" },
+			{ "<leader>Cr", "<cmd>TypescriptRenameFile<cr>", desc = "Rename File" },
+			{ "<leader>Cg", "<cmd>TypescriptGoToSourceDefinition<cr>", desc = "Go To Source Definition" },
+		},
+	},
+
 	-- {
-	-- 	"jose-elias-alvarez/typescript.nvim",
-	-- 	keys = {
-	-- 		{ "<leader>C", desc = "TypeScript" },
-	-- 		{ "<leader>Ca", "<cmd>TypescriptAddMissingImports<cr>", desc = "Add missing imports" },
-	-- 		{ "<leader>Co", "<cmd>TypescriptOrganizeImports<cr>", desc = "Organize imports" },
-	-- 		{ "<leader>Cu", "<cmd>TypescriptRemoveUnused<cr>", desc = "Remove unused imports" },
-	-- 		{ "<leader>Cf", "<cmd>TypescriptFixAll<cr>", desc = "Fix all" },
-	-- 		{ "<leader>Cr", "<cmd>TypescriptRenameFile<cr>", desc = "Rename file" },
-	-- 		{ "<leader>Cg", "<cmd>TypescriptGoToSourceDefinition<cr>", desc = "Go to source definition" },
-	-- 	},
-	-- },
 
 	{ "ayu-theme/ayu-vim" },
-	{ "lunarvim/horizon.nvim" },
-	{ "lunarvim/lunar.nvim" },
-	{ "morhetz/gruvbox" },
-	{ "sainnhe/edge" },
-	{ "sainnhe/gruvbox-material" },
-	{ "sainnhe/sonokai" },
-	{ "tomasr/molokai" },
 
 	{
 		"ethanholz/nvim-lastplace",
@@ -133,6 +128,8 @@ lvim.plugins = {
 		end,
 	},
 	{ "kevinhwang91/nvim-ufo", dependencies = { "kevinhwang91/promise-async" } },
+	{ "lunarvim/horizon.nvim" },
+	{ "lunarvim/lunar.nvim" },
 
 	{
 		"max397574/better-escape.nvim",
@@ -161,6 +158,7 @@ lvim.plugins = {
 		lazy = true,
 		build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
 	},
+	{ "morhetz/gruvbox" },
 	{ "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
 	{
 		"nmac427/guess-indent.nvim",
@@ -169,8 +167,8 @@ lvim.plugins = {
 		end,
 	},
 
-	-- nvim-colorizer (color highlighter)
 	{
+		-- nvim-colorizer (color highlighter)
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup({ "css", "scss", "html", "javascript" }, {
@@ -383,32 +381,32 @@ lvim.plugins = {
 			}
 		end,
 	},
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		config = function()
-			local api = require("typescript-tools.api")
-			require("typescript-tools").setup({
-				handlers = {
-					["textDocument/publishDiagnostics"] = api.filter_diagnostics(
-						-- Ignore 'This may be converted to an async function' diagnostics.
-						{ 6133, 80001 }
-					),
-				},
-			})
-		end,
-		keys = {
-			{ "<leader>C", desc = "TS Tools" },
-			{ "<leader>Ca", "<cmd>TSToolsAddMissingImports<cr>", desc = "Add Missing Imports" },
-			{ "<leader>Co", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize Imports" },
-			{ "<leader>Cs", "<cmd>TSToolsSortImports<cr>", desc = "Sort Imports" },
-			{ "<leader>Ci", "<cmd>TSToolsRemoveUnusedImports<cr>", desc = "Remove Unused Imports" },
-			{ "<leader>Cu", "<cmd>TSToolsRemoveUnused<cr>", desc = "Remove Unused Statements" },
-			{ "<leader>Cf", "<cmd>TSToolsFixAll<cr>", desc = "Fix All" },
-			{ "<leader>Cr", "<cmd>TSToolsRenameFile<cr>", desc = "Rename File" },
-			{ "<leader>Cg", "<cmd>TSToolsGoToSourceDefinition<cr>", desc = "Go To Source Definition" },
-		},
-	},
+	-- {
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- 	config = function()
+	-- 		local api = require("typescript-tools.api")
+	-- 		require("typescript-tools").setup({
+	-- 			handlers = {
+	-- 				["textDocument/publishDiagnostics"] = api.filter_diagnostics(
+	-- 					-- Ignore 'This may be converted to an async function' diagnostics.
+	-- 					{ 6133, 80001 }
+	-- 				),
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	keys = {
+	-- 		{ "<leader>C", desc = "TS Tools" },
+	-- 		{ "<leader>Ca", "<cmd>TSToolsAddMissingImports<cr>", desc = "Add Missing Imports" },
+	-- 		{ "<leader>Co", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize Imports" },
+	-- 		{ "<leader>Cs", "<cmd>TSToolsSortImports<cr>", desc = "Sort Imports" },
+	-- 		{ "<leader>Ci", "<cmd>TSToolsRemoveUnusedImports<cr>", desc = "Remove Unused Imports" },
+	-- 		{ "<leader>Cu", "<cmd>TSToolsRemoveUnused<cr>", desc = "Remove Unused Statements" },
+	-- 		{ "<leader>Cf", "<cmd>TSToolsFixAll<cr>", desc = "Fix All" },
+	-- 		{ "<leader>Cr", "<cmd>TSToolsRenameFile<cr>", desc = "Rename File" },
+	-- 		{ "<leader>Cg", "<cmd>TSToolsGoToSourceDefinition<cr>", desc = "Go To Source Definition" },
+	-- 	},
+	-- },
 
 	{ "rafamadriz/friendly-snippets" },
 	{
@@ -508,7 +506,11 @@ lvim.plugins = {
 		},
 	},
 
+	{ "sainnhe/edge" },
+	{ "sainnhe/gruvbox-material" },
+	{ "sainnhe/sonokai" },
 	{ "ThePrimeagen/harpoon" },
+	{ "tomasr/molokai" },
 	{ "tpope/vim-repeat" },
 	{ "tpope/vim-surround" },
 
