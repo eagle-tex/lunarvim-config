@@ -1,6 +1,6 @@
 local lvim_lsp = require("lvim.lsp")
--- local ts = require('typescript')
-local tt = require("typescript-tools")
+local ts = require("typescript")
+-- local tt = require("typescript-tools")
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
@@ -73,9 +73,9 @@ require("lvim.lsp.manager").setup("cssls", {
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+	return server ~= "emmet_ls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -104,22 +104,33 @@ lvim.lsp.on_attach_callback = function(client, bufnr)
 end
 
 -- Typescript config using typescript.nvim
--- ts.setup({
---   server = {
---     root_dir = require('lspconfig.util').root_pattern('.git'),
---     capabilities = common_capabilities,
---     on_attach = common_on_attach,
---   },
--- })
-
--- Typescript config using typescript-tools.nvim -- NOT COMPLETE YET (20231015)
-tt.setup({
+ts.setup({
 	server = {
 		root_dir = require("lspconfig.util").root_pattern(".git"),
 		capabilities = common_capabilities,
 		on_attach = common_on_attach,
 	},
 })
+
+-- Typescript config using typescript-tools.nvim -- NOT COMPLETE YET (20231015)
+-- tt.setup({
+-- 	server = {
+-- 		root_dir = require("lspconfig.util").root_pattern(".git"),
+-- 		capabilities = common_capabilities,
+-- 		on_attach = common_on_attach,
+-- 	},
+-- 	-- on_attach = common_on_attach,
+-- 	-- capabilities = common_capabilities,
+-- 	-- handlers = function()
+-- 	-- 	local api = require("typescript-tools.api")
+-- 	-- 	require("typescript-tools").setup({
+-- 	-- 		handlers = {
+-- 	-- 			["textDocument/publishDiagnostics"] = api.filter_diagnostics({ 80001 }),
+-- 	-- 		},
+-- 	-- 	})
+-- 	-- end,
+-- 	-- settings = {},
+-- })
 
 -- -- Keeping this here for reference
 -- require("lvim.lsp.manager").setup("tsserver", {
@@ -209,8 +220,11 @@ code_actions.setup({
 --	"folke/neodev.nvim",
 -- })
 
--- lvim.lsp.diagnostics.float.max_width = 120
+lvim.lsp.diagnostics.float.max_width = 120
 -- lvim.lsp.diagnostics.float.focusable = true
+-- vim.diagnostic.config({
+--
+-- })
 
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
