@@ -7,17 +7,17 @@ lvim.plugins = {
 
 	-- { "christoomey/vim-tmux-navigator" },
 
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				-- suggestions = { enabled = false },
-				-- panel = { enabled = false },
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			-- suggestions = { enabled = false },
+	-- 			-- panel = { enabled = false },
+	-- 		})
+	-- 	end,
+	-- },
 
 	{
 		"jose-elias-alvarez/typescript.nvim",
