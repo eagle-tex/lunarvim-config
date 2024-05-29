@@ -15,7 +15,7 @@ else
 endif
 badd +12 ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/App.tsx
 badd +94 ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/.eslintrc.cjs
-badd +15 ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/createTaskForm/_TaskSelectField.tsx
+badd +20 ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/createTaskForm/_TaskSelectField.tsx
 badd +38 src/components/createTaskForm/CreateTaskForm.tsx
 badd +33 ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskArea/TaskArea.tsx
 badd +27 ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskCounter/TaskCounter.tsx
@@ -54,12 +54,12 @@ exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 argglobal
 balt ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/.eslintrc.cjs
-let s:l = 16 - ((11 * winheight(0) + 21) / 42)
+let s:l = 20 - ((18 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 0
+keepjumps 20
+normal! 013|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskCounter/TaskCounter.tsx", ":p")) | buffer ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskCounter/TaskCounter.tsx | else | edit ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskCounter/TaskCounter.tsx | endif
@@ -67,7 +67,7 @@ if &buftype ==# 'terminal'
   silent file ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskCounter/TaskCounter.tsx
 endif
 balt ~/Code/web/homework/manik-cloudaffle/todo-app-react-ts/src/components/taskArea/TaskArea.tsx
-let s:l = 27 - ((11 * winheight(0) + 21) / 42)
+let s:l = 27 - ((14 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt

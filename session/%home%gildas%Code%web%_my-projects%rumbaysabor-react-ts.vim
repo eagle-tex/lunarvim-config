@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/lvim/lua
+cd ~/Code/web/_my-projects/rumbaysabor-react-ts
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,21 +13,15 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +26 ~/.config/lvim/config.lua
-badd +208 user/plugins.lua
-badd +40 user/colorscheme.lua
-badd +12 user/autocmds.lua
-badd +20 user/dashboard.lua
-badd +29 user/filetype.lua
-badd +20 user/keymaps.lua
-badd +128 user/kind.lua
-badd +62 user/lsp.lua
-badd +41 user/builtins.lua
-badd +2 user/statusline.lua
-badd +68 user/which-key.lua
+badd +21 ~/Code/web/_my-projects/rumbaysabor-react-ts/src/hooks/useMediaQuery.ts
+badd +1 ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/Link.tsx
+badd +24 ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/index.tsx
+badd +1 ~/Code/web/_my-projects/rumbaysabor-react-ts/src/shared/types.ts
+badd +14 ~/Code/web/_my-projects/rumbaysabor-react-ts/src/index.css
+badd +10 ~/Code/web/_my-projects/rumbaysabor-react-ts/index.html
 argglobal
 %argdel
-edit user/plugins.lua
+edit ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/index.tsx
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -44,30 +38,32 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
+exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 argglobal
-balt user/autocmds.lua
-let s:l = 203 - ((41 * winheight(0) + 26) / 52)
+balt ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/Link.tsx
+let s:l = 24 - ((23 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 203
+keepjumps 24
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("user/builtins.lua", ":p")) | buffer user/builtins.lua | else | edit user/builtins.lua | endif
+if bufexists(fnamemodify("~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/index.tsx", ":p")) | buffer ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/index.tsx | else | edit ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/index.tsx | endif
 if &buftype ==# 'terminal'
-  silent file user/builtins.lua
+  silent file ~/Code/web/_my-projects/rumbaysabor-react-ts/src/scenes/navbar/index.tsx
 endif
-balt user/lsp.lua
-let s:l = 39 - ((25 * winheight(0) + 26) / 52)
+balt ~/Code/web/_my-projects/rumbaysabor-react-ts/src/index.css
+let s:l = 24 - ((23 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 39
-normal! 06|
+keepjumps 24
+normal! 0
 wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
+exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -83,6 +79,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

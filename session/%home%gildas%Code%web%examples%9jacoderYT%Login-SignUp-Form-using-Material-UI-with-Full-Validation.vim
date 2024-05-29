@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/lvim/lua
+cd ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,21 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +26 ~/.config/lvim/config.lua
-badd +208 user/plugins.lua
-badd +40 user/colorscheme.lua
-badd +12 user/autocmds.lua
-badd +20 user/dashboard.lua
-badd +29 user/filetype.lua
-badd +20 user/keymaps.lua
-badd +128 user/kind.lua
-badd +62 user/lsp.lua
-badd +41 user/builtins.lua
-badd +2 user/statusline.lua
-badd +68 user/which-key.lua
+badd +1 ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/App.css
+badd +17 ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/App.js
+badd +36 ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/formControl/login.js
 argglobal
 %argdel
-edit user/plugins.lua
+edit ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/App.js
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -46,26 +37,26 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt user/autocmds.lua
-let s:l = 203 - ((41 * winheight(0) + 26) / 52)
+balt ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/formControl/login.js
+let s:l = 44 - ((43 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 203
-normal! 0
+keepjumps 44
+normal! 035|
 wincmd w
 argglobal
-if bufexists(fnamemodify("user/builtins.lua", ":p")) | buffer user/builtins.lua | else | edit user/builtins.lua | endif
+if bufexists(fnamemodify("~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/formControl/login.js", ":p")) | buffer ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/formControl/login.js | else | edit ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/formControl/login.js | endif
 if &buftype ==# 'terminal'
-  silent file user/builtins.lua
+  silent file ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/formControl/login.js
 endif
-balt user/lsp.lua
-let s:l = 39 - ((25 * winheight(0) + 26) / 52)
+balt ~/Code/web/examples/9jacoderYT/Login-SignUp-Form-using-Material-UI-with-Full-Validation/src/App.js
+let s:l = 130 - ((45 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 39
-normal! 06|
+keepjumps 130
+normal! 020|
 wincmd w
 wincmd =
 tabnext 1
@@ -83,6 +74,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

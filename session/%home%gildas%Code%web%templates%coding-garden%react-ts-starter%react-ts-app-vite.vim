@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +21 src/App.test.tsx
+badd +17 src/App.test.tsx
 badd +5 src/App.tsx
-badd +22 package.json
+badd +1 package.json
 badd +3 src/index.css
 badd +11 vite.config.ts
 badd +12 src/setupTests.ts
 badd +13 tsconfig.json
 badd +8 tsconfig.node.json
-badd +41 .eslintrc.cjs
+badd +16 .eslintrc.cjs
 argglobal
 %argdel
-edit src/App.test.tsx
+edit package.json
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -41,16 +41,15 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
-exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
+wincmd =
 argglobal
-balt tsconfig.node.json
-let s:l = 17 - ((16 * winheight(0) + 21) / 42)
+balt src/App.tsx
+let s:l = 30 - ((29 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 17
-normal! 05|
+keepjumps 30
+normal! 042|
 wincmd w
 argglobal
 if bufexists(fnamemodify(".eslintrc.cjs", ":p")) | buffer .eslintrc.cjs | else | edit .eslintrc.cjs | endif
@@ -58,15 +57,15 @@ if &buftype ==# 'terminal'
   silent file .eslintrc.cjs
 endif
 balt tsconfig.node.json
-let s:l = 16 - ((8 * winheight(0) + 21) / 42)
+let s:l = 32 - ((26 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 0
+keepjumps 32
+normal! 026|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
-exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
+2wincmd w
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

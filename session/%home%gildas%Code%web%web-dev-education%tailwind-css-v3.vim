@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/lvim/lua
+cd ~/Code/web/web-dev-education/tailwind-css-v3
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,21 +13,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +26 ~/.config/lvim/config.lua
-badd +208 user/plugins.lua
-badd +40 user/colorscheme.lua
-badd +12 user/autocmds.lua
-badd +20 user/dashboard.lua
-badd +29 user/filetype.lua
-badd +20 user/keymaps.lua
-badd +128 user/kind.lua
-badd +62 user/lsp.lua
-badd +41 user/builtins.lua
-badd +2 user/statusline.lua
-badd +68 user/which-key.lua
+badd +281 ~/Code/web/web-dev-education/tailwind-css-v3/src/index.html
+badd +7 ~/Code/web/web-dev-education/tailwind-css-v3/src/input.css
 argglobal
 %argdel
-edit user/plugins.lua
+edit ~/Code/web/web-dev-education/tailwind-css-v3/src/index.html
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -46,26 +36,26 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt user/autocmds.lua
-let s:l = 203 - ((41 * winheight(0) + 26) / 52)
+balt ~/Code/web/web-dev-education/tailwind-css-v3/src/input.css
+let s:l = 208 - ((21 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 203
-normal! 0
+keepjumps 208
+normal! 026|
 wincmd w
 argglobal
-if bufexists(fnamemodify("user/builtins.lua", ":p")) | buffer user/builtins.lua | else | edit user/builtins.lua | endif
+if bufexists(fnamemodify("~/Code/web/web-dev-education/tailwind-css-v3/src/input.css", ":p")) | buffer ~/Code/web/web-dev-education/tailwind-css-v3/src/input.css | else | edit ~/Code/web/web-dev-education/tailwind-css-v3/src/input.css | endif
 if &buftype ==# 'terminal'
-  silent file user/builtins.lua
+  silent file ~/Code/web/web-dev-education/tailwind-css-v3/src/input.css
 endif
-balt user/lsp.lua
-let s:l = 39 - ((25 * winheight(0) + 26) / 52)
+balt ~/Code/web/web-dev-education/tailwind-css-v3/src/index.html
+let s:l = 1 - ((0 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 39
-normal! 06|
+keepjumps 1
+normal! 0
 wincmd w
 wincmd =
 tabnext 1
@@ -83,6 +73,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

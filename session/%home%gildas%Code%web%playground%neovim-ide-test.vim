@@ -13,16 +13,16 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +15 ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
+badd +1 ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
 badd +12 index.html
-badd +64 src/scenes/ourClasses/index.tsx
-badd +29 src/scenes/home/index.tsx
-badd +20 src/files/debugMe.js
-badd +38 src/scenes/navbar/index.tsx
+badd +67 src/scenes/ourClasses/index.tsx
+badd +14 src/scenes/home/index.tsx
+badd +9 src/files/debugMe.js
+badd +29 src/scenes/navbar/index.tsx
 badd +5 src/files/functions.ts
 badd +13 src/files/ts-file.ts
-badd +9 src/assets/Asset.tsx
-badd +7 src/files/fibonacci.ts
+badd +14 src/index.css
+badd +2 ~/Code/web/playground/neovim-ide-test/src/trial.css
 argglobal
 %argdel
 tabnew +setlocal\ bufhidden=wipe
@@ -61,17 +61,17 @@ if &buftype ==# 'terminal'
   silent file src/files/debugMe.js
 endif
 balt src/scenes/navbar/index.tsx
-let s:l = 4 - ((3 * winheight(0) + 26) / 52)
+let s:l = 9 - ((4 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 4
+keepjumps 9
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 126 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 127 + 127) / 254)
 tabnext
-edit src/files/debugMe.js
+edit src/scenes/navbar/index.tsx
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -91,13 +91,13 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 argglobal
-balt ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
-let s:l = 20 - ((19 * winheight(0) + 26) / 52)
+balt src/files/functions.ts
+let s:l = 29 - ((28 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 20
-normal! 036|
+keepjumps 29
+normal! 040|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts", ":p")) | buffer ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts | else | edit ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts | endif
@@ -105,7 +105,7 @@ if &buftype ==# 'terminal'
   silent file ~/Code/web/playground/neovim-ide-test/src/files/toDebug.ts
 endif
 balt src/files/debugMe.js
-let s:l = 5 - ((4 * winheight(0) + 26) / 52)
+let s:l = 5 - ((0 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -129,6 +129,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

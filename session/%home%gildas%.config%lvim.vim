@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/lvim
+cd ~/.config/lvim/lua
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,21 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +26 ~/.config/lvim/config.lua
-badd +198 ~/.config/lvim/lua/user/plugins.lua
-badd +40 ~/.config/lvim/lua/user/colorscheme.lua
-badd +12 ~/.config/lvim/lua/user/autocmds.lua
-badd +20 lua/user/dashboard.lua
-badd +29 ~/.config/lvim/lua/user/filetype.lua
-badd +20 ~/.config/lvim/lua/user/keymaps.lua
-badd +128 ~/.config/lvim/lua/user/kind.lua
-badd +172 ~/.config/lvim/lua/user/lsp.lua
-badd +41 ~/.config/lvim/lua/user/builtins.lua
-badd +2 ~/.config/lvim/lua/user/statusline.lua
-badd +68 ~/.config/lvim/lua/user/which-key.lua
+badd +2 ~/.config/lvim/config.lua
+badd +86 user/lsp.lua
+badd +27 user/plugins.lua
 argglobal
 %argdel
-edit ~/.config/lvim/lua/user/plugins.lua
+edit user/plugins.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -46,27 +37,27 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt ~/.config/lvim/lua/user/autocmds.lua
-let s:l = 203 - ((30 * winheight(0) + 26) / 52)
+balt user/lsp.lua
+let s:l = 34 - ((32 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 203
-normal! 030|
+keepjumps 34
+normal! 03|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.config/lvim/lua/user/lsp.lua", ":p")) | buffer ~/.config/lvim/lua/user/lsp.lua | else | edit ~/.config/lvim/lua/user/lsp.lua | endif
+if bufexists(fnamemodify("user/lsp.lua", ":p")) | buffer user/lsp.lua | else | edit user/lsp.lua | endif
 if &buftype ==# 'terminal'
-  silent file ~/.config/lvim/lua/user/lsp.lua
+  silent file user/lsp.lua
 endif
-let s:l = 169 - ((25 * winheight(0) + 26) / 52)
+balt user/plugins.lua
+let s:l = 209 - ((7 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 169
-normal! 0
+keepjumps 209
+normal! 011|
 wincmd w
-2wincmd w
 wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -83,7 +74,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

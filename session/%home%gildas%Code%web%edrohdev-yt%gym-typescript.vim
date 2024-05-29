@@ -13,16 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +52 .eslintrc.cjs
-badd +1 src/App.tsx
-badd +29 src/scenes/navbar/index.tsx
-badd +1 src/scenes/home/index.tsx
-badd +74 src/scenes/ourClasses/index.tsx
+badd +125 .eslintrc.cjs
+badd +9 src/App.tsx
+badd +27 src/scenes/navbar/index.tsx
+badd +1 src/scenes/contactUs/index.tsx
+badd +1 ~/Code/web/edrohdev-yt/gym-typescript/src/scenes/footer/index.tsx
+badd +20 package.json
+badd +25 ~/Code/web/edrohdev-yt/gym-typescript/tsconfig.json
+badd +6 ~/Code/web/edrohdev-yt/gym-typescript/postcss.config.js
+badd +1 ~/Code/web/edrohdev-yt/gym-typescript/src/main.tsx
+badd +23 vite.config.ts
 argglobal
 %argdel
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit src/scenes/home/index.tsx
+edit src/scenes/navbar/index.tsx
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -42,30 +47,29 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 argglobal
-let s:l = 16 - ((15 * winheight(0) + 21) / 42)
+let s:l = 27 - ((26 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 044|
+keepjumps 27
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/scenes/ourClasses/index.tsx", ":p")) | buffer src/scenes/ourClasses/index.tsx | else | edit src/scenes/ourClasses/index.tsx | endif
+if bufexists(fnamemodify("src/scenes/navbar/index.tsx", ":p")) | buffer src/scenes/navbar/index.tsx | else | edit src/scenes/navbar/index.tsx | endif
 if &buftype ==# 'terminal'
-  silent file src/scenes/ourClasses/index.tsx
+  silent file src/scenes/navbar/index.tsx
 endif
-balt src/scenes/home/index.tsx
-let s:l = 74 - ((20 * winheight(0) + 21) / 42)
+let s:l = 27 - ((26 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 74
+keepjumps 27
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
 exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 tabnext
-edit src/scenes/ourClasses/index.tsx
+edit vite.config.ts
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -84,25 +88,27 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-let s:l = 76 - ((22 * winheight(0) + 21) / 42)
+balt ~/Code/web/edrohdev-yt/gym-typescript/src/main.tsx
+let s:l = 23 - ((22 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 76
-normal! 0
+keepjumps 23
+normal! 04|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/scenes/ourClasses/index.tsx", ":p")) | buffer src/scenes/ourClasses/index.tsx | else | edit src/scenes/ourClasses/index.tsx | endif
+if bufexists(fnamemodify(".eslintrc.cjs", ":p")) | buffer .eslintrc.cjs | else | edit .eslintrc.cjs | endif
 if &buftype ==# 'terminal'
-  silent file src/scenes/ourClasses/index.tsx
+  silent file .eslintrc.cjs
 endif
-let s:l = 74 - ((21 * winheight(0) + 21) / 42)
+let s:l = 109 - ((15 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 74
+keepjumps 109
 normal! 0
 wincmd w
+2wincmd w
 wincmd =
 tabnext 2
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -119,6 +125,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
