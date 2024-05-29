@@ -6,6 +6,7 @@ local ts = require("typescript")
 lvim.lsp.installer.setup.ensure_installed = {
 	--"sumneko_lua",
 	-- "json",
+	"bashls",
 	"cssls",
 	"emmet_ls",
 	"html",
@@ -57,6 +58,10 @@ require("lvim.lsp.manager").setup("cssls", {
 	},
 })
 -- end of addition of 2023/09/22
+
+-- require("lvim.lsp.manager").setup("tailwindcss", {
+-- 	filetypes = { "html", "css", "vue", "typescriptreact", "javascriptreact" },
+-- })
 
 -- require("lvim.lsp.manager").setup("tsserver", {
 -- 	on_attach = function(client, bufnr)
@@ -182,7 +187,13 @@ linters.setup({
 	{
 		command = "eslint_d",
 		sources = { linters.eslint_d },
-		filetypes = { "javascript", "typescript", "typescriptreact", "json" },
+		filetypes = {
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+			-- "json",
+		},
 	},
 	{ command = "flake8", filetypes = { "python" } },
 	--   {
